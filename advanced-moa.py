@@ -31,7 +31,7 @@ def getFinalSystemPrompt(system_prompt, results):
 
 
 async def run_llm(model, prev_response=None):
-    """Run a single LLM call with a model while accounting for previous responses + rate limits."""
+    """Run a single LLM call with a model while accounting for previous responses + 1 call per second rate limits."""
     for sleep_time in [1, 2, 4]:
         try:
             messages = (

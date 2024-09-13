@@ -105,7 +105,7 @@ def main(
     console.print(md)
     sleep(0.75)
     console.print(
-        "\n[bold]To use this demo, answer the questions below to get started [cyan](press enter to use the defaults)[/cyan][/bold]:"
+        "\n[bold]To use this demo, answer the questions below to get started[/bold] [cyan bold](press enter to use the defaults)[/cyan bold]:"
     )
 
     data = {
@@ -123,7 +123,7 @@ def main(
     console.print(f"Selected {model}.", style="yellow italic")
     temperature = float(
         Prompt.ask(
-            "2. What temperature do you want to use? [cyan bold](0.7) [/cyan bold]",
+            "2. What temperature do you want to use?[cyan bold](0.7)[/cyan bold]",
             default=0.7,
             show_default=True,
         )
@@ -131,7 +131,7 @@ def main(
     console.print(f"Selected {temperature}.", style="yellow italic")
     max_tokens = int(
         Prompt.ask(
-            "3. What max tokens do you want to use? [cyan bold](512) [/cyan bold]",
+            "3. What max tokens do you want to use?[cyan bold](512)[/cyan bold]",
             default=512,
             show_default=True,
         )
@@ -143,7 +143,7 @@ def main(
         try:
             instruction = Prompt.ask(
                 "\n[cyan bold]Prompt >>[/cyan bold] ",
-                default="Top things to do in NYC",
+                default="Top things to do in NYC, type 'exit' or 'quit' to stop.",
                 show_default=True,
             )
         except EOFError:
@@ -166,7 +166,7 @@ def main(
 
         eval_set = datasets.Dataset.from_dict(data)
 
-        with console.status("[bold green]Querying all the models...") as status:
+        with console.status("[bold green]Querying all the models...\n") as status:
             for i_round in range(rounds):
                 eval_set = eval_set.map(
                     partial(
